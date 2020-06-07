@@ -1,0 +1,5 @@
+name: Debug Artifacts
+description: Uploads debug logs as an artifact
+runs:
+  using: docker
+  image: Dockerfile

@@ -1,0 +1,20 @@
+{
+  "name": "debug-artifacts-action",
+  "version": "1.0.0",
+  "description": "Automatically upload artifacts to help with Action debugging",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "github",
+    "action",
+    "debug"
+  ],
+  "author": "Michael Heap <m@michaelheap.com> (https://michaelheap.com)",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/artifact": "^0.3.2",
+    "@actions/io": "^1.0.2"
+  }
+}
