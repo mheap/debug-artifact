@@ -26,11 +26,12 @@ const fs = require("fs");
   stream.end();
 
   // Upload as an artifact
-
   let suffix = ``;
   if (payload.action) {
     suffix = `-${payload.action}`;
   }
+
+  await io.mkdirP("/github/workspace");
 
   const filename = `${process.env.GITHUB_EVENT_NAME}${suffix}.json`;
   const eventPayloadPath = `/github/workspace/${filename}`;
