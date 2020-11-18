@@ -5,8 +5,11 @@ const payload = require(process.env.GITHUB_EVENT_PATH);
 const fs = require("fs");
 
 (async () => {
+  const rootDirectory = "./debug-artifact";
+  await io.mkdirP(rootDirectory);
+
   // Write all environment vars to a file to upload
-  var stream = fs.createWriteStream("env");
+  var stream = fs.createWriteStream(`${rootDirectory}/env`);
 
   // Wait for the file to be open
   await new Promise((resolve) => {
@@ -30,9 +33,6 @@ const fs = require("fs");
   if (payload.action) {
     suffix = `-${payload.action}`;
   }
-
-  const rootDirectory = "./debug-artifact";
-  await io.mkdirP(rootDirectory);
 
   const filename = `${process.env.GITHUB_EVENT_NAME}${suffix}.json`;
   const eventPayloadPath = `${rootDirectory}/${filename}`;
