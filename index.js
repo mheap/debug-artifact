@@ -31,16 +31,16 @@ const fs = require("fs");
     suffix = `-${payload.action}`;
   }
 
-  await io.mkdirP("/github/workspace");
+  const rootDirectory = "./debug-artifact";
+  await io.mkdirP(rootDirectory);
 
   const filename = `${process.env.GITHUB_EVENT_NAME}${suffix}.json`;
-  const eventPayloadPath = `/github/workspace/${filename}`;
+  const eventPayloadPath = `${rootDirectory}/${filename}`;
   await io.cp(process.env.GITHUB_EVENT_PATH, eventPayloadPath);
 
   const artifactClient = artifact.create();
   const artifactName = "debug-logs";
-  const files = [eventPayloadPath, "/github/workspace/env"];
-  const rootDirectory = "/github/workspace";
+  const files = [eventPayloadPath, `${rootDirectory}/env`];
 
   const uploadResult = await artifactClient.uploadArtifact(
     artifactName,
